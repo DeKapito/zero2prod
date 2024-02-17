@@ -8,11 +8,7 @@ pub struct Settings {
 
 #[derive(serde::Deserialize)]
 pub struct DatabaseSettings {
-    pub username: String,
-    pub password: String,
-    pub port: u16,
-    pub host: String,
-    pub database_name: String,
+    pub database_url: String,
 }
 
 pub fn get_configuration() -> Result<Settings, ConfigError> {
@@ -26,16 +22,13 @@ pub fn get_configuration() -> Result<Settings, ConfigError> {
 
 impl DatabaseSettings {
     pub fn connection_string(&self) -> String {
-        format!(
-            "postgres://{}:{}@{}:{}/{}",
-            self.username, self.password, self.host, self.port, self.database_name,
-        )
+        format!("{}", self.database_url)
     }
 
-    pub fn connection_string_without_db(&self) -> String {
-        format!(
-            "postgres://{}:{}@{}:{}",
-            self.username, self.password, self.host, self.port,
-        )
-    }
+    // pub fn connection_string_without_db(&self) -> String {
+    //     format!(
+    //         "postgres://{}:{}@{}:{}",
+    //         self.username, self.password, self.host, self.port,
+    //     )
+    // }
 }

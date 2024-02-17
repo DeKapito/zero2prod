@@ -24,7 +24,7 @@ default-features = false
 features = [
     "runtime-actix-rustls",
     "macros",
-    "postgres",
+    "sqlite",
     "uuid",
     "chrono",
     "migrate"
