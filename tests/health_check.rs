@@ -26,7 +26,9 @@ async fn spawn_app() -> TestApp {
 }
 
 pub async fn configure_database() -> SqlitePool {
-    let connection_options = SqliteConnectOptions::from_str("sqlite::memory:").unwrap();
+    let connection_options = SqliteConnectOptions::from_str("sqlite::memory:")
+        .unwrap()
+        .create_if_missing(true);
 
     let connection_pool = SqlitePool::connect_with(connection_options)
         .await

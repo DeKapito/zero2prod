@@ -1,8 +1,7 @@
 use crate::routes::{health_check, subscribe};
 use actix_web::dev::Server;
 use actix_web::{web, App, HttpServer};
-use sqlx::migrate::MigrateDatabase;
-use sqlx::{Sqlite, SqlitePool};
+use sqlx::SqlitePool;
 use std::net::TcpListener;
 
 pub fn run(listener: TcpListener, db_pool: SqlitePool) -> Result<Server, std::io::Error> {

@@ -22,7 +22,7 @@ pub fn get_configuration() -> Result<Settings, ConfigError> {
 
 impl DatabaseSettings {
     pub fn connection_string(&self) -> String {
-        format!("{}", self.database_url)
+        self.database_url.to_string()
     }
 
     // pub fn connection_string_without_db(&self) -> String {
